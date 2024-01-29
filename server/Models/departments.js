@@ -5,7 +5,7 @@ const schema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  staffNumber: {
+  staffCapacity: {
     type: Number,
     required: true,
   },

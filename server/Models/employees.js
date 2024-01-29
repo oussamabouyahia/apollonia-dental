@@ -9,13 +9,11 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  birthDate: {
-    type: Date,
-    required: true,
-  },
+
   departementId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Department",
+    required: true,
   },
 });
 
