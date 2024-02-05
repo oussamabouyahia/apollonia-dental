@@ -33,4 +33,64 @@ const addEmployee = async (req, res) => {
       .send(error.message || "internal server problem");
   }
 };
-module.exports = { addEmployee, listOfEmployees };
+const updateEmployee = async (req, res) => {
+  const { id } = req.params;
+  const { name, surname, departementId } = req.body;
+  try {
+    const updatedEmployee = await Employee.findByIdAndUpdate(
+      id,
+      { name, surname, departementId },
+      { new: true }
+    );
+    updatedEmployee
+      ? res
+          .status(200)
+          .json({ message: "employee updated successfully", updatedEmployee })
+      : res
+          .status(400)
+          .send("error occurred and the target employee was not updated");
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .send(error.message || "internal server problem");
+  }
+};
+const getOneEmployee = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const targetEmployee = await Employee.findById(id);
+    targetEmployee
+      ? res
+          .status(200)
+          .json({ targetEmployee, message: "employee was found successfully" })
+      : res.sendStatus(404);
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .send(error.message || "internal server problem");
+  }
+};
+const deleteEmployee = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deletedEmployee = await Employee.findByIdAndDelete(id);
+    deletedEmployee
+      ? res
+          .status(200)
+          .json({ message: "employee deleted successfully", deletedEmployee })
+      : res
+          .status(400)
+          .send("something wrong the employee was not deleted successfully");
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .send(error.message || "internal server problem");
+  }
+};
+module.exports = {
+  addEmployee,
+  listOfEmployees,
+  updateEmployee,
+  getOneEmployee,
+  deleteEmployee,
+};
