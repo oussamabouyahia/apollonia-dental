@@ -25,4 +25,61 @@ const listOfDepartment = async (req, res) => {
       .send(error.message || "internal server problem");
   }
 };
-module.exports = { newDepartment, listOfDepartment };
+const updateDepartment = async (req, res) => {
+  const { id } = req.params;
+  const { name, staffCapacity } = req.body;
+  try {
+    const targetDepartment = await Department.findByIdAndUpdate(
+      id,
+      { name, staffCapacity },
+      { new: true }
+    );
+    targetDepartment
+      ? res.status(200).json({
+          message: "department updated successfully",
+          targetDepartment,
+        })
+      : res.sendStaus(400);
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .send(error.message || "internal server problem");
+  }
+};
+const deleteDepartment = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const targetDepartment = await Department.findByIdAndDelete(id);
+    targetDepartment
+      ? res
+          .status(200)
+          .json({ message: "deleted successfully", targetDepartment })
+      : res.sendStatus(400);
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .send(error.message || "internal server problem!");
+  }
+};
+const getOneDepartment = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const targetDepartment = await Department.findById(id);
+    targetDepartment
+      ? res
+          .status(200)
+          .json({ targetDepartment, message: "here is the department" })
+      : res.sendStatus(404);
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .send(error.message || "internal server problem");
+  }
+};
+module.exports = {
+  newDepartment,
+  listOfDepartment,
+  updateDepartment,
+  deleteDepartment,
+  getOneDepartment,
+};
