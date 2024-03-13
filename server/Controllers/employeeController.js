@@ -1,10 +1,19 @@
 const Employee = require("../Models/employees");
-
+const Department = require("../Models/departments");
 const listOfEmployees = async (req, res) => {
   try {
     const list = await Employee.find();
+    const listWithDepartment = await Promise.all(
+      list.map(async (e) => {
+        const dep = await Department.findById(e.departementId);
+        e.departementName = dep.name;
+        return e;
+      })
+    );
     list.length
-      ? res.status(200).json({ message: "here are the list", list })
+      ? res
+          .status(200)
+          .json({ message: "here are the list", listWithDepartment })
       : res.status(404).send("list is empty");
   } catch (error) {
     res

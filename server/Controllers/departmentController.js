@@ -1,5 +1,5 @@
 const Department = require("../Models/departments");
-
+const Employee = require("../Models/employees");
 const newDepartment = async (req, res) => {
   const { name, staffCapacity } = req.body;
   try {
@@ -65,10 +65,17 @@ const getOneDepartment = async (req, res) => {
   const { id } = req.params;
   try {
     const targetDepartment = await Department.findById(id);
+    const departmentEmployees = await Employee.find({
+      departementId: targetDepartment?.id,
+    });
     targetDepartment
-      ? res
-          .status(200)
-          .json({ targetDepartment, message: "here is the department" })
+      ? res.status(200).json({
+          message1: "employees of this department",
+          departmentEmployees,
+
+          message2: "here is the department",
+          targetDepartment,
+        })
       : res.sendStatus(404);
   } catch (error) {
     res
