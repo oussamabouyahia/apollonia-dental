@@ -6,8 +6,13 @@ const listOfEmployees = async (req, res) => {
     const listWithDepartment = await Promise.all(
       list.map(async (e) => {
         const dep = await Department.findById(e.departementId);
-        e.departementName = dep.name;
-        return e;
+
+        return {
+          id: e._id,
+          name: e.name,
+          surname: e.surname,
+          departementName: dep.name,
+        };
       })
     );
     list.length

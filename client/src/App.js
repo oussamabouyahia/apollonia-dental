@@ -1,6 +1,7 @@
 import "./App.css";
 import ListOfDep from "./components/ListOfDep";
 import EmployeesByDep from "./components/EmployeesByDep";
+import Employees from "./components/Employees";
 
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 function App() {
@@ -12,6 +13,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ListOfDep />} />
             <Route path="/employees" element={<EmployeesByDep />} />
+            <Route path="/list" element={<Employees />} />
           </Routes>
         </div>
       </BrowserRouter>

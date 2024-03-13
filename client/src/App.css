@@ -47,8 +47,25 @@
     display: grid;
     grid-template-columns: 1fr;
   }
+  table {
+    max-width: 90%;
+  }
 }
-
+.employees h3 {
+  text-align: left;
+  margin: auto 2% auto 5%;
+}
+table {
+  max-width: 50%;
+  margin: 1% auto auto 5%;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+  text-align: left;
+  width: 33%;
+}
 .department button {
   appearance: none;
   background-color: #ffffff;
