@@ -13,7 +13,7 @@
   color: white;
 }
 .department {
-  border: 0.2rem solid rgb(0, 51, 255);
+  border: 0.2rem solid rgb(0, 225, 255);
   border-radius: 10px;
   background-color: azure;
   margin: 1%;
@@ -33,31 +33,27 @@
   max-width: 30%;
   margin: 0.5% 2% 1% 10%;
 }
-
-@media only screen and (max-width: 600px) {
-  .name {
-    max-width: 95%;
-    margin: 2%;
-  }
-  .department button {
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-  }
-  .departments {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-  table {
-    max-width: 90%;
-  }
+.employees {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5% auto auto auto;
 }
 .employees h3 {
-  text-align: left;
-  margin: auto 2% auto 5%;
+  text-align: center;
+  margin-bottom: 1%;
+  font-size: 3rem;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bolder;
 }
 table {
-  max-width: 50%;
-  margin: 1% auto auto 5%;
+  font-family: "Times New Roman", Times, serif;
+  max-width: fit-content;
+}
+table thead {
+  background-color: aliceblue;
+  font-size: large;
 }
 table,
 th,
@@ -91,13 +87,66 @@ td {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-
+.addEmployee {
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 2% auto auto auto;
+}
+.alertButton {
+  margin-top: 3%;
+  width: 60%;
+}
+.formlabel {
+  margin-top: 3%;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  font-size: medium;
+}
+.addEmployee h2 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 3rem;
+}
+.addEmployee .button {
+  margin: 2% auto auto auto;
+  background-color: #adcfff;
+  width: 300px;
+}
 .department button:hover {
-  background-color: #ffc229;
-  box-shadow: #ff6314 0 -6px 8px inset;
+  background-color: #a6ff29;
+  box-shadow: #fff314 0 -6px 8px inset;
   transform: scale(1.125);
 }
 
 .department button:active {
   transform: scale(1.025);
+}
+@media only screen and (max-width: 600px) {
+  .name {
+    max-width: 95%;
+    margin: 2%;
+  }
+  .department button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  .departments {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  table {
+    max-width: 90%;
+  }
+  .addEmployee .button {
+    width: auto;
+  }
+  .alertButton {
+    width: 80%;
+    margin-top: 8%;
+  }
+  .formlabel {
+    margin-top: 5%;
+  }
 }

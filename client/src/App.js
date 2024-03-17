@@ -2,7 +2,7 @@ import "./App.css";
 import ListOfDep from "./components/ListOfDep";
 import EmployeesByDep from "./components/EmployeesByDep";
 import Employees from "./components/Employees";
-
+import NewEmployee from "./components/NewEmployee";
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
             <Route path="/" element={<ListOfDep />} />
             <Route path="/employees" element={<EmployeesByDep />} />
             <Route path="/list" element={<Employees />} />
+            <Route path="/new" element={<NewEmployee />} />
           </Routes>
         </div>
       </BrowserRouter>
