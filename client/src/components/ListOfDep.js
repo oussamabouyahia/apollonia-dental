@@ -1,18 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Department from "./Department";
 import { useNavigate } from "react-router-dom";
 
-const ListOfDep = () => {
-  const [departments, setDepartments] = useState([]);
+const ListOfDep = ({ departments }) => {
   const navigate = useNavigate();
-  useEffect(() => {
-    fetch("http://localhost:3500/department")
-      .then((res) => res.json())
-      .then((data) => {
-        setDepartments(data.list);
-      })
-      .catch((err) => console.log(err.message));
-  }, []);
+
   const listByDep = (id) => {
     fetch(`http://localhost:3500/department/${id}`)
       .then((res) => res.json())

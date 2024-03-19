@@ -94,7 +94,9 @@ const deleteEmployee = async (req, res) => {
           .json({ message: "employee deleted successfully", deletedEmployee })
       : res
           .status(400)
-          .send("something wrong the employee was not deleted successfully");
+          .send(
+            "something went wrong! the employee was not deleted successfully"
+          );
   } catch (error) {
     res
       .status(error.status || 500)

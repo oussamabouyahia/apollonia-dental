@@ -29,6 +29,7 @@ const NewEmployee = () => {
         alert(res.data.message);
         setName("");
         setSurname("");
+        setSelectedDep("");
       })
       .catch((err) => console.log(err.message));
   };
@@ -37,14 +38,20 @@ const NewEmployee = () => {
       <h2>Add a new Employee</h2>
       <FormControl isRequired>
         <FormLabel className="formlabel">Name</FormLabel>
-        <Input placeholder="Name" onChange={(e) => setName(e.target.value)} />
+        <Input
+          value={name}
+          placeholder="Name"
+          onChange={(e) => setName(e.target.value)}
+        />
         <FormLabel className="formlabel">Surname</FormLabel>
         <Input
+          value={surname}
           placeholder="Surname"
           onChange={(e) => setSurname(e.target.value)}
         />
         <FormLabel className="formlabel">Department</FormLabel>
         <Select
+          value={selectedDep}
           placeholder="Select department"
           onChange={(e) => setSelectedDep(e.target.value)}
         >
@@ -54,10 +61,7 @@ const NewEmployee = () => {
             </option>
           ))}
         </Select>
-        {/* <Button className="button" onClick={addEmployee}>
-          {" "}
-          Add Employee
-        </Button> */}
+
         <Alert
           text="add Employee"
           action={addEmployee}

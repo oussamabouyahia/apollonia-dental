@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
-const Employees = () => {
+import Alert from "./Alert";
+import { Button, Input, Select } from "@chakra-ui/react";
+const Employees = ({ departments }) => {
   const [employees, setEmployees] = useState([]);
+  const [editRow, setEditRow] = useState(-1);
+  const [employee, setEmployee] = useState({
+    name: "",
+    surname: "",
+    departementId: "",
+  });
   useEffect(() => {
     fetch("http://localhost:3500/employee")
       .then((res) => res.json())
@@ -11,6 +20,13 @@ const Employees = () => {
       })
       .catch((err) => console.log(err.message));
   }, []);
+  const deleteEmployee = (id) => {
+    axios
+      .delete(`http://localhost:3500/employee/${id}`)
+      .then((res) => alert(res.data.message))
+      .catch((err) => alert(err.message));
+  };
+  const updateEmployee = (id) => {};
 
   return (
     <div className="employees">
@@ -26,7 +42,6 @@ const Employees = () => {
               <th>Department</th>
               <th>Delete</th>
               <th>Update</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -35,18 +50,54 @@ const Employees = () => {
                 key={e.id}
                 style={{ backgroundColor: i % 2 === 0 ? "white" : "#adcfff" }}
               >
-                <td> {e.name}</td>
-                <td> {e.surname}</td>
-                <td> {e.departementName}</td>
                 <td>
-                  <button>
-                    <DeleteIcon />
-                  </button>
+                  {editRow === i ? (
+                    <Input defaultValue={e.name} />
+                  ) : (
+                    <span>{e.name}</span>
+                  )}
                 </td>
                 <td>
-                  <button>
+                  {editRow === i ? (
+                    <Input defaultValue={e.surname} />
+                  ) : (
+                    <span>{e.surname}</span>
+                  )}
+                </td>
+                <td>
+                  {editRow === i ? (
+                    <Select defaultValue={e.departementName}>
+                      {departments.map((el) => (
+                        <option value={el.name} key={el._id}>
+                          {el.name}
+                        </option>
+                      ))}
+                    </Select>
+                  ) : (
+                    <span>{e.departementName}</span>
+                  )}
+                </td>
+                <td
+                  style={{
+                    width: "10%",
+                  }}
+                >
+                  <Alert
+                    text={<DeleteIcon />}
+                    action={() => deleteEmployee(e.id)}
+                  />
+                </td>
+                <td
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "space-evenly",
+                  }}
+                >
+                  <button onClick={() => setEditRow(i)}>
                     <EditIcon />
                   </button>
+                  <Button>Save Update</Button>
                 </td>
               </tr>
             ))}
