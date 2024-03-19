@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FormControl, FormLabel, Input, Select } from "@chakra-ui/react";
-import Alert from "./Alert";
+import Alert from "./AlertDialogExample";
 const NewEmployee = () => {
   const [departments, setDepartments] = useState([]);
   const [selectedDep, setSelectedDep] = useState("");
