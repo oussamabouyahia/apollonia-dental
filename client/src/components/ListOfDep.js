@@ -16,23 +16,35 @@ const ListOfDep = ({ departments }) => {
   };
 
   return (
-    <div className="departments">
-      {departments.lengt === 0 ? (
-        <p>loading...</p>
-      ) : (
-        departments.map((e) => (
-          <div key={e._id}>
-            <Department
-              name={e.name}
-              staffCapacity={e.staffCapacity}
-              listByDep={() => {
-                listByDep(e._id);
-              }}
-            />
-          </div>
-        ))
-      )}
-    </div>
+    <>
+      <h1
+        style={{
+          color: "ActiveCaption",
+          textDecoration: "underline",
+          fontSize: "2rem",
+          textAlign: "center",
+        }}
+      >
+        Our Departments
+      </h1>
+      <div className="departments">
+        {departments.lengt === 0 ? (
+          <p>loading...</p>
+        ) : (
+          departments.map((e) => (
+            <div key={e._id}>
+              <Department
+                name={e.name}
+                staffCapacity={e.staffCapacity}
+                listByDep={() => {
+                  listByDep(e._id);
+                }}
+              />
+            </div>
+          ))
+        )}
+      </div>
+    </>
   );
 };
 

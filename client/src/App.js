@@ -4,6 +4,7 @@ import ListOfDep from "./components/ListOfDep";
 import EmployeesByDep from "./components/EmployeesByDep";
 import Employees from "./components/Employees";
 import NewEmployee from "./components/NewEmployee";
+import Menu from "./components/Menu";
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 function App() {
   const [departments, setDepartments] = useState([]);
@@ -19,7 +20,7 @@ function App() {
     <>
       <BrowserRouter>
         <div className="App">
-          <h1>Apollonia Dental Clinic</h1>
+          <Menu />
           <Routes>
             <Route path="/" element={<ListOfDep departments={departments} />} />
             <Route path="/employees" element={<EmployeesByDep />} />
