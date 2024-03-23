@@ -1,10 +1,11 @@
 import React from "react";
 import Department from "./Department";
 import { useNavigate } from "react-router-dom";
+import { employeesContext } from "../contexts/EmployeesContext";
 
-const ListOfDep = ({ departments }) => {
+const ListOfDep = () => {
   const navigate = useNavigate();
-
+  const { departments } = React.useContext(employeesContext);
   const listByDep = (id) => {
     fetch(`http://localhost:3500/department/${id}`)
       .then((res) => res.json())

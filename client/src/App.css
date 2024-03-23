@@ -44,7 +44,10 @@
   background-color: azure;
   margin: 1%;
 }
-
+.department h3 {
+  font-size: larger;
+  font-weight: bolder;
+}
 .departments {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -97,18 +100,18 @@ td {
   background-color: #ffffff;
   border-radius: 40em;
   border-style: none;
-  box-shadow: #adcfff 0 -12px 6px inset;
+  box-shadow: #adcfff 0 -10px 4px inset;
   box-sizing: border-box;
   color: #000000;
   cursor: pointer;
   display: inline-block;
 
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 500;
   letter-spacing: -0.24px;
   margin-bottom: 1%;
   outline: none;
-  padding: 1rem 1.3rem;
+  padding: 0.7rem 1rem;
   quotes: auto;
   text-align: center;
   text-decoration: none;

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { PhoneIcon, AddIcon } from "@chakra-ui/icons";
 const Menu = () => {
   return (
     <nav className="menu">
@@ -9,15 +10,19 @@ const Menu = () => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          {" "}
           <Link to="/list">Aplonia staff</Link>
         </li>
         <li>
-          {" "}
-          <Link to="/new">Add Employee</Link>
+          <Link to="/new">
+            <AddIcon />
+            Add Employee
+          </Link>
         </li>
         <li>
-          <Link to="/">Contact</Link>
+          <Link to="/">
+            <PhoneIcon />
+            Contact
+          </Link>
         </li>
       </ul>
     </nav>

@@ -3,8 +3,8 @@ import axios from "axios";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import AlertDialogExample from "./AlertDialogExample";
 import { Button, Input, Select, Alert, AlertIcon } from "@chakra-ui/react";
-const Employees = ({ departments }) => {
-  const [employees, setEmployees] = useState([]);
+import { employeesContext } from "../contexts/EmployeesContext";
+const Employees = () => {
   const [editRow, setEditRow] = useState(-1);
   const [alertUpdate, setAlertUpdate] = useState(false);
   const [alertDelete, setAlertDelete] = useState(false);
@@ -13,15 +13,8 @@ const Employees = ({ departments }) => {
     surname: "",
     departementId: "",
   });
-  useEffect(() => {
-    fetch("http://localhost:3500/employee")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setEmployees(data.listWithDepartment);
-      })
-      .catch((err) => console.log(err.message));
-  }, []);
+  const { employees, departments } = React.useContext(employeesContext);
+
   const deleteEmployee = (id) => {
     axios
       .delete(`http://localhost:3500/employee/${id}`)
